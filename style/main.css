@@ -1,0 +1,121 @@
+.border-cards{
+  border: 1px solid #ccc;
+  border-left: none;
+  border-right: none;
+  margin-bottom: 10px;
+}
+
+.zoom {
+  transition: all .5s ease-in-out;
+}
+/* ======= loader ======= */
+.loader-container {
+  top: 15rem;
+  left: 45%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.loader-container .card-box {
+  width: 80px;
+  height: 120px;
+  background-color: #c1974f;
+  border-radius: 4px;
+  position: absolute;
+  transform: origin center;
+  animation: move 2s ease-out infinite;
+  border: solid 1px black;
+  padding: 5px;
+}
+
+.loader-container .card-box > * {
+  border: solid 1px rgb(97, 97, 97);
+  border-radius: 4px;
+  width: 100%;
+  opacity: .2;
+  background-color: rgb(121, 121, 121);
+}
+
+.loader-container .card-box .card-header {
+  height: 15%;
+}
+
+.loader-container .card-box .card-body {
+  height: 50%;
+}
+
+.loader-container .card-box .card-desc {
+  height: 25%;
+}
+
+.loader-container .card-box:nth-child(1) {
+  animation-delay: 0.05s;
+}
+
+.loader-container .card-box:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.loader-container .card-box:nth-child(3) {
+  animation-delay: 0.15s;
+}
+
+.loader-container .card-box:nth-child(4) {
+  animation-delay: 0.2s;
+}
+
+.loader-container .card-box:nth-child(5) {
+  animation-delay: 0.25s;
+}
+
+.loader-container .card-box:nth-child(6) {
+  animation-delay: 0.3s;
+}
+
+.loader-container .card-box:nth-child(1) {
+  background-color: #d6aa5c;
+  z-index: 6;
+}
+
+.loader-container .card-box:nth-child(2) {
+  background-color: #1d9f90;
+  z-index: 5;
+}
+
+.loader-container .card-box:nth-child(3) {
+  background-color: #383c43;
+  z-index: 4;
+}
+
+.loader-container .card-box:nth-child(4) {
+  background-color: #894695;
+  z-index: 3;
+}
+
+.loader-container .card-box:nth-child(5) {
+  background-color: #226da6;
+  z-index: 2;
+}
+
+.loader-container .card-box:nth-child(6) {
+  background-color: #d3d5d5;
+  z-index: 1;
+}
+
+@keyframes move {
+  20% {
+    transform: translate(80px) rotate(90deg);
+  }
+
+  40% {
+    transform: translate(-80px) rotate(270deg);
+  }
+
+  60% {
+    transform: rotate(360deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
