@@ -8,6 +8,11 @@ const app = new Vue({
     cardSelected: null,
   },
   methods:{
+    handleErrorImage() {
+      document.getElementsByClassName(card.id)[0].src = "assets/card-error.png"
+      document.getElementsByClassName(card.id)[0].onerror = ""
+      return true;
+    },
     onLoadImage(card) {
       document.getElementsByClassName(card.id)[0].src = card.card_images[0].image_url
     },
