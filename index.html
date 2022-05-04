@@ -43,6 +43,7 @@
         v-for="card in cards"
         :key="card.id"
         :alt="card.name"
+        :title="`${card.name}&#013;${card?.type ? card.type: ''} ${card?.level ? ', Level: ' + card.level : ''}&#013;&#013;${card.desc}`"
         src="assets/card-back.jpg"
         @click="openCard(card)"
         @load="onLoadImage(card)"
