@@ -35,7 +35,6 @@ const app = new Vue({
         this.isLoading = true
         axios.get(this.urlYgoProdeck.concat("?fname=").concat(this.search))
         .then((response) => {
-          console.log(response.data.data)
           this.cards = response.data.data
         })
         .catch((error) => {
