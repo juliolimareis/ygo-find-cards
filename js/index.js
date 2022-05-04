@@ -8,6 +8,9 @@ const app = new Vue({
     cardSelected: null,
   },
   methods:{
+    onLoadImage(card) {
+      document.getElementsByClassName(card.id)[0].src = card.card_images[0].image_url
+    },
     openCard(card){
       this.cardSelected = card;
     },

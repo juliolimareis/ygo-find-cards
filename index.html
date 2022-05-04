@@ -39,13 +39,14 @@
     <!-- cards -->
     <div v-if="!isLoading && cards.length" class="border-cards mt-4">
       <img
-        class="is-clickable zoom m-2"
+        :class="`is-clickable zoom m-2 ${card.id}`"
         width="150"
         v-for="card in cards"
         :key="card.id"
         :alt="card.name"
-        :src="card.card_images[0].image_url"
+        src="assets/card-back.jpg"
         @click="openCard(card)"
+        @load="onLoadImage(card)"
       />
     </div>
 
