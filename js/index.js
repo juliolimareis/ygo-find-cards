@@ -6,6 +6,7 @@ const app = new Vue({
     isLoading: false,
     zoom: '15rem',
     cardSelected: null,
+    urlYgoProdeck: "https://db.ygoprodeck.com/api/v7/cardinfo.php"
   },
   methods:{
     handleErrorImage() {
@@ -32,7 +33,7 @@ const app = new Vue({
     onCards(){
       if(this.search.trim()){
         this.isLoading = true
-        axios.get("https://db.ygoprodeck.com/api/v7/cardinfo.php?fname=".concat(this.search))
+        axios.get(this.urlYgoProdeck.concat("?fname=").concat(this.search))
         .then((response) => {
           console.log(response.data.data)
           this.cards = response.data.data
