@@ -6,7 +6,7 @@ const localPath = (dir) => path.join(__dirname, dir);
 module.exports = {
   entry: ['@babel/polyfill', localPath('src/main.ts')],
   output: {
-    path: localPath('public'),
+    path: localPath('dist'),
     filename: 'bandle.js',
   },
   devServer: {
