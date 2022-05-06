@@ -23,7 +23,7 @@ const app = createApp({
       const docCard = document
         .getElementsByClassName(card.id.toString()) as any;
       if (docCard.length) {
-        docCard[0].src = 'assets/images/card-error.png';
+        docCard[0].src = 'assets/images/card-error.webp';
       }
       return true;
     },

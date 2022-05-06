@@ -39,7 +39,7 @@
             :key="card.id"
             :alt="card.name"
             :title="`${card.name}&#013;${card?.type ? card.type: ''} ${card?.level ? ', Level: ' + card.level : ''}&#013;&#013;${card.desc}`"
-            src="images/card-back.jpg"
+            src="images/card-back.webp"
             @click="addToDeck(card)"
             @mouseover="selectCard(card)"
             @load="onLoadImage(card)"
