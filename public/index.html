@@ -1,23 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="style/bulma.css" rel="stylesheet"/>
-  <link href="style/main.css" rel="stylesheet"/>
-
-  <script defer src="js/vue.js"></script>
-  <script defer src="js/axios.js"></script>
-  <script defer src="js/index.js"></script>
-
+  <link rel="shortcut icon" href="favicon.ico">
   <title>Yu-Gi-oH! Find Cards</title>
+  <script defer src="bandle.js"></script>
 </head>
-<body> 
+
+<body>
   <div id="app" class="container has-text-centered p-2">
 
     <h1 class="is-size-2 p-4">Yu-Gi-oH! Find Cards</h1>
-    
+
     <!-- Actions search -->
     <div class="is-flex">
       <input
@@ -27,28 +24,39 @@
         v-on:keyup.enter="onCards"
       />
 
-      <button 
-        class="button is-rounded ml-2 is-primary"
-        @click="onCards"
-      >
+      <button class="button is-rounded ml-2 is-primary" @click="onCards">
         Pesquisar
       </button>
     </div>
 
     <!-- cards -->
-    <div v-if="!isLoading && cards.length" class="border-cards mt-4">
-      <img
-        :class="`is-clickable zoom m-2 ${card.id}`"
-        width="150"
-        v-for="card in cards"
-        :key="card.id"
-        :alt="card.name"
-        :title="`${card.name}&#013;${card?.type ? card.type: ''} ${card?.level ? ', Level: ' + card.level : ''}&#013;&#013;${card.desc}`"
-        src="assets/card-back.jpg"
-        @click="openCard(card)"
-        @load="onLoadImage(card)"
-        @error="handleErrorImage"
-      />
+    <div v-if="!isLoading && cards.length" class="border-cards mt-4 columns">
+        <div class="column is-four-fifths">
+          <img
+            :class="`y-card-size is-clickable zoom m-2 ${card.id}`"
+            width="150"
+            v-for="card in cards"
+            :key="card.id"
+            :alt="card.name"
+            :title="`${card.name}&#013;${card?.type ? card.type: ''} ${card?.level ? ', Level: ' + card.level : ''}&#013;&#013;${card.desc}`"
+            src="images/card-back.jpg"
+            @click="addToDeck(card)"
+            @mouseover="selectCard(card)"
+            @load="onLoadImage(card)"
+            @error="handleErrorImage"
+          />
+        </div>
+
+        <div class="column left-cards">
+          <img
+            v-if="cardSelected"
+            class="mr-2"
+            width="150"
+            :alt="cardSelected.name"
+            :title="`${cardSelected.name}&#013;${cardSelected.type ? cardSelected.type: ''} ${cardSelected.level ? ', Level: ' + cardSelected.level : ''}&#013;&#013;${cardSelected.desc}`"
+            :src="cardSelected.card_images[0].image_url"
+          />
+        </div>
     </div>
 
     <!-- loading -->
@@ -94,17 +102,14 @@
     </template>
 
     <!-- Modal -->
-    <div class="modal is-active is-clipped" v-if="cardSelected" @click="openCard(null)">
+    <div class="modal is-active is-clipped" v-if="isOpenCard && cardSelected" @click="openCard(false)">
       <div class="modal-background"></div>
       <div class="modal-content">
-        <img
-          class="is-clickable zoom m-2"
-          :alt="cardSelected.name"
-          :src="cardSelected.card_images[0].image_url"
-        />
+        <img class="is-clickable zoom m-2" :alt="cardSelected.name" :src="cardSelected.card_images[0].image_url" />
       </div>
     </div>
 
   </div>
 </body>
+
 </html>
