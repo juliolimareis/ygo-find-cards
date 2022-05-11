@@ -30,34 +30,14 @@
     </div>
 
     <!-- cards -->
-    <div v-if="!isLoading && cards.length" class="border-cards mt-4 columns">
-        <div class="column is-four-fifths">
-          <img
-            :class="`y-card-size is-clickable zoom m-2 ${card.id}`"
-            width="150"
-            v-for="card in cards"
-            :key="card.id"
-            :alt="card.name"
-            :title="`${card.name}&#013;${card?.type ? card.type: ''} ${card?.level ? ', Level: ' + card.level : ''}&#013;&#013;${card.desc}`"
-            src="images/card-back.webp"
-            @click="addToDeck(card)"
-            @mouseover="selectCard(card)"
-            @load="onLoadImage(card)"
-            @error="handleErrorImage"
-          />
-        </div>
+    <div class="content-cards border-cards columns">
 
-        <div class="column left-cards">
-          <img
-            v-if="cardSelected"
-            class="mr-2"
-            width="150"
-            :alt="cardSelected.name"
-            :title="`${cardSelected.name}&#013;${cardSelected.type ? cardSelected.type: ''} ${cardSelected.level ? ', Level: ' + cardSelected.level : ''}&#013;&#013;${cardSelected.desc}`"
-            :src="cardSelected.card_images[0].image_url"
-          />
-        </div>
-    </div>
+      <!-- cards info left -->
+      <div class="column info-cards content-info">
+        <img v-if="cardSelected" width="150" :alt="cardSelected.name"
+          :title="`${cardSelected.name}&#013;${cardSelected.type ? cardSelected.type: ''} ${cardSelected.level ? ', Level: ' + cardSelected.level : ''}&#013;&#013;${cardSelected.desc}`"
+          :src="cardSelected.card_images[0].image_url" @click="openCard(true)" />
+      </div>
 
     <!-- loading -->
     <template v-if="isLoading">
@@ -82,20 +62,41 @@
           <div class="card-body mt-2"></div>
           <div class="card-desc mt-1"></div>
         </div>
-        <div class="card-box">
-          <div class="card-header"></div>
-          <div class="card-body mt-2"></div>
-          <div class="card-desc mt-1"></div>
+
+        <!-- cards main deck -->
+        <div class="content-cards">
+          <h1 class="subtitle">Main ({{decks[nameDeckSelected].main.length}})</h1>
+          <div class="main-deck border-side" lass>
+            <img v-for="(card, i) in decks[nameDeckSelected].main" :key="card.id" width="150"
+              :class="`y-card-size is-clickable zoom m-2 ${card.id}`" :alt="card.name"
+              :title="`${card.name}&#013;${card?.type ? card.type: ''} ${card?.level ? ', Level: ' + card.level : ''}&#013;&#013;${card.desc}`"
+              :src="card?.card_images[0]?.image_url" @mouseover="selectCard(card)" @error="handleErrorImage(card)"
+              @click="removeToDeck(i, 'main')" />
+          </div>
         </div>
-        <div class="card-box">
-          <div class="card-header"></div>
-          <div class="card-body mt-2"></div>
-          <div class="card-desc mt-1"></div>
+
+        <!-- cards extra deck -->
+        <div class="content-cards">
+          <h1 class="subtitle">Extra ({{decks[nameDeckSelected].extra.length}})</h1>
+          <div class="extra-deck">
+            <img v-for="(card, i) in decks[nameDeckSelected].extra" :key="card.id" width="150"
+            :class="`y-card-size is-clickable zoom m-2 ${card.id}`" :alt="card.name"
+            :title="`${card.name}&#013;${card?.type ? card.type: ''} ${card?.level ? ', Level: ' + card.level : ''}&#013;&#013;${card.desc}`"
+            :src="card?.card_images[0]?.image_url" @mouseover="selectCard(card)" @error="handleErrorImage(card)"
+            @click="removeToDeck(i, 'extra')" />
+          </div>
         </div>
-        <div class="card-box">
-          <div class="card-header"></div>
-          <div class="card-body mt-2"></div>
-          <div class="card-desc mt-1"></div>
+
+        <!-- cards side deck -->
+        <div class="content-cards">
+          <h1 class="subtitle">Side ({{decks[nameDeckSelected].side.length}})</h1>
+          <div class="side-deck">
+            <img v-for="(card, i) in decks[nameDeckSelected].side" :key="card.id" width="150"
+            :class="`y-card-size is-clickable zoom m-2 ${card.id}`" :alt="card.name"
+            :title="`${card.name}&#013;${card?.type ? card.type: ''} ${card?.level ? ', Level: ' + card.level : ''}&#013;&#013;${card.desc}`"
+            :src="card?.card_images[0]?.image_url" @mouseover="selectCard(card)" @error="handleErrorImage(card)"
+            @click="removeToDeck(i, 'main')" />
+          </div>
         </div>
       </div>
       <p class="mt-5">Looking for letters ...</p>
