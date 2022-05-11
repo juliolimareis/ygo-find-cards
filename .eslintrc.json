@@ -1,33 +1,52 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
-    },
-    "extends": [
-        "plugin:vue/essential",
-        "airbnb-base"
-    ],
-    "parserOptions": {
-        "sourceType": "module",
-        "ecmaVersion": "latest",
-        "parser": "@typescript-eslint/parser"
-    },
-    "plugins": [
-        "vue",
-        "@typescript-eslint",
-        "html"
-    ],
-    "rules": {
-        "no-console": "off",
-        "no-use-before-define": "off",
-        "@typescript-eslint/no-use-before-define": ["error"]
-    },
-    "overrides": [
-        {
-            "files": ["*.ts", "*.vue"],
-            "rules": {
-                "no-undef": "off"
-            }
-        }
-    ]
+	"env": {
+		"browser": true,
+		"es2021": true
+	},
+	"extends": [
+		"plugin:vue/essential",
+		"airbnb-base",
+		"plugin:css/recommended",
+		"plugin:json/recommended",
+        "eslint:recommended"
+	],
+	"parserOptions": {
+		"sourceType": "module",
+		"ecmaVersion": "latest",
+		"parser": "@typescript-eslint/parser"
+	},
+	"plugins": [
+		"vue",
+		"@typescript-eslint",
+		"eslint-plugin-html",
+        "html",
+		"css",
+		"json"
+	],
+	"rules": {
+		"no-console": "off",
+		"no-use-before-define": "off",
+		"@typescript-eslint/no-use-before-define": [
+			"error"
+		],
+		"quotes": [
+			"error",
+			"double"
+		],
+		"json/*": [
+			"error",
+			"allowComments"
+		]
+	},
+	"overrides": [
+		{
+			"files": [
+				"*.ts",
+				"*.vue"
+			],
+			"rules": {
+				"no-undef": "off"
+			}
+		}
+	]
 }
