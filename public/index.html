@@ -11,22 +11,17 @@
 </head>
 
 <body>
-  <div id="app" class="container has-text-centered p-2">
-
-    <h1 class="is-size-2 p-4">Yu-Gi-oH! Find Cards</h1>
-
+  <div id="app" class="container p-1">
     <!-- Actions search -->
-    <div class="is-flex">
-      <input
-        class="input is-rounded is-primary"
-        type="text"
-        v-model="search"
-        v-on:keyup.enter="onCards"
-      />
+    <div class="bg-white actions-search mb-3">
+      <h1 class="is-size-2 p-4 has-text-centered">Yu-Gi-oH! Find Cards</h1>
+      <div class="is-flex">
+        <input class="input is-rounded is-primary" type="text" v-model="search" v-on:keyup.enter="onCards" />
 
-      <button class="button is-rounded ml-2 is-primary" @click="onCards">
-        Pesquisar
-      </button>
+        <button class="button is-rounded ml-2 is-primary" @click="onCards">
+          Pesquisar
+        </button>
+      </div>
     </div>
 
     <!-- cards -->
@@ -39,28 +34,61 @@
           :src="cardSelected.card_images[0].image_url" @click="openCard(true)" />
       </div>
 
-    <!-- loading -->
-    <template v-if="isLoading">
-      <div class="loader-container">
-        <div class="card-box">
-          <div class="card-header"></div>
-          <div class="card-body mt-2"></div>
-          <div class="card-desc mt-1"></div>
-        </div>
-        <div class="card-box">
-          <div class="card-header"></div>
-          <div class="card-body mt-2"></div>
-          <div class="card-desc mt-1"></div>
-        </div>
-        <div class="card-box">
-          <div class="card-header"></div>
-          <div class="card-body mt-2"></div>
-          <div class="card-desc mt-1"></div>
-        </div>
-        <div class="card-box">
-          <div class="card-header"></div>
-          <div class="card-body mt-2"></div>
-          <div class="card-desc mt-1"></div>
+      <!-- cards -->
+      <div class="column is-four-fifths">
+        <h1 class="subtitle">Total results: {{cards.length}}</h1>
+
+        <!-- cards search -->
+        <div class="content-cards-search">
+          <div class="is-flex">
+            <img :class="`y-card-size is-clickable zoom m-2 ${card.id}`" v-for="card in cards" :key="card.id"
+              width="150" :alt="card.name"
+              :title="`${card.name}&#013;${card?.type ? card.type: ''} ${card?.level ? ', Level: ' + card.level : ''}&#013;&#013;${card.desc}`"
+              src="images/card-back.webp" @click="addToDeck(card)" @mouseover="selectCard(card)"
+              @load="onLoadImage(card)" @error="handleErrorImage(card)" />
+          </div>
+
+          <!-- loading -->
+          <template v-if="isLoading">
+            <div class="loader-container">
+              <div class="card-box">
+                <div class="card-header"></div>
+                <div class="card-body mt-2"></div>
+                <div class="card-desc mt-1"></div>
+              </div>
+              <div class="card-box">
+                <div class="card-header"></div>
+                <div class="card-body mt-2"></div>
+                <div class="card-desc mt-1"></div>
+              </div>
+              <div class="card-box">
+                <div class="card-header"></div>
+                <div class="card-body mt-2"></div>
+                <div class="card-desc mt-1"></div>
+              </div>
+              <div class="card-box">
+                <div class="card-header"></div>
+                <div class="card-body mt-2"></div>
+                <div class="card-desc mt-1"></div>
+              </div>
+              <div class="card-box">
+                <div class="card-header"></div>
+                <div class="card-body mt-2"></div>
+                <div class="card-desc mt-1"></div>
+              </div>
+              <div class="card-box">
+                <div class="card-header"></div>
+                <div class="card-body mt-2"></div>
+                <div class="card-desc mt-1"></div>
+              </div>
+              <div class="card-box">
+                <div class="card-header"></div>
+                <div class="card-body mt-2"></div>
+                <div class="card-desc mt-1"></div>
+              </div>
+            </div>
+            <p class="mt-5">Looking for letters ...</p>
+          </template>
         </div>
 
         <!-- cards main deck -->
@@ -99,8 +127,8 @@
           </div>
         </div>
       </div>
-      <p class="mt-5">Looking for letters ...</p>
-    </template>
+
+    </div>
 
     <!-- Modal -->
     <div class="modal is-active is-clipped" v-if="isOpenCard && cardSelected" @click="openCard(false)">

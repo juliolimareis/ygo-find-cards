@@ -1,18 +1,19 @@
-import { createApp } from 'vue';
-import axios from 'axios';
+import { createApp } from "vue";
+import axios from "axios";
 
-import './assets/styles/bulma.main.css';
-import './assets/styles/main.css';
-import { isEmpty } from 'lodash';
+import "./assets/styles/bulma.main.css";
+import "./assets/styles/main.css";
+import "./assets/styles/helpers.css";
+
+import { isEmpty } from "lodash";
 
 const app = createApp({
   data: () => ({
     cards: [],
-    search: 'raid',
+    search: "exodia",
     isLoading: false,
     cardSelected: null,
-    urlYgoProdeck: 'https://db.ygoprodeck.com/api/v7/cardinfo.php',
-    deck: [],
+    urlYgoProDeck: "https://db.ygoprodeck.com/api/v7/cardinfo.php",
     isOpenCard: false,
     nameDeckSelected: "empty",
     decks: {

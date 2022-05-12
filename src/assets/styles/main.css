@@ -1,8 +1,53 @@
-.y-card-size {
-    width: 5rem;
+.main-deck{
+  height: 550px;
+  overflow: auto;
 }
 
-.border-cards{
+.extra-deck, .side-deck {
+  height: 225px;
+  border: solid 1px black;
+}
+
+.border-side{
+  border: solid 1px black;
+  border-top: none;
+  border-bottom: none;
+}
+
+.desc-info {
+  text-align: left;
+  width: auto;
+  height: 150px;
+  overflow-x: auto;
+}
+
+.content-cards-search{
+  height: 155px;
+  overflow-x: auto;
+}
+
+.content-cards{
+    min-height: 100px;
+}
+
+.content-info{
+
+}
+
+.actions-search {
+  width: 100%;
+  padding: 0 2rem 1rem 2rem;
+}
+
+.content-cards {
+  padding: 1rem;
+}
+
+.y-card-size {
+  width: 5rem;
+}
+
+.border-cards {
   border: 1px solid #ccc;
   border-left: none;
   border-right: none;
@@ -12,24 +57,24 @@
 .zoom {
   transition: all .5s ease-in-out;
 }
+
 /* ======= loader ======= */
 .loader-container {
-  top: 15rem;
   left: 45%;
   position: absolute;
   transform: translate(-50%, -50%);
 }
 
 .loader-container .card-box {
-  width: 80px;
-  height: 120px;
+  width: 60px;
+  height: 100px;
   background-color: #c1974f;
   border-radius: 4px;
   position: absolute;
   transform: origin center;
   animation: move 2s ease-out infinite;
   border: solid 1px black;
-  padding: 5px;
+  padding: 2px;
 }
 
 .loader-container .card-box > * {
