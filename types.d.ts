@@ -1,3 +1,10 @@
+interface Deck {
+  main: Card[],
+  extra: Card[],
+  side: Card[],
+  removed: [],
+}
+
 interface Card {
   id: number
   name: string
