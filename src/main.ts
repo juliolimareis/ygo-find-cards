@@ -32,7 +32,7 @@ const app = createApp({
       const docCard = document
         .getElementsByClassName(card.id.toString()) as any;
       if (docCard.length) {
-        docCard[0].src = 'assets/images/card-error.webp';
+        docCard[0].src = "assets/images/card-error.webp";
       }
       return true;
     },
@@ -52,13 +52,39 @@ const app = createApp({
       this.isOpenCard = isOpen;
     },
     addToDeck(card: Card): void {
-      this.deck.push(card);
-      console.log(card);
+      const deck = this.getDeckSelected();
+
+      if (card.type.toLocaleLowerCase().includes("xyz")
+        || card.type.toLocaleLowerCase().includes("link")
+        || card.type.toLocaleLowerCase().includes("fusion")
+        || card.type.toLocaleLowerCase().includes("synchro")
+      ) {
+        if (deck.extra.length <= 15 && this.repeatLimit(card)) {
+          deck.extra.push(card);
+          this.orderDeckExtra();
+        }
+      } else if (deck.main.length <= 60 && this.repeatLimit(card)) {
+        deck.main.push(card);
+        this.orderDeck("main");
+      } else if (deck.side.length <= 15 && this.repeatLimit(card)) {
+        deck.side.push(card);
+        this.orderDeck("side");
+      }
+    },
+    removeToDeck(index: number, deckType: string): void {
+      const deck = this.getDeckSelected();
+      deck[deckType].splice(index, 1);
+    },
+    repeatLimit(card: Card): boolean {
+      const deck = this.getDeckSelected();
+      return [...deck.main, ...deck.extra, ...deck.side]
+        .filter((c: Card) => c.id === card.id).length < 3;
     },
     onCards() {
       if (!isEmpty(this.search)) {
         this.isLoading = true;
-        axios.get(this.urlYgoProdeck.concat('?fname=').concat(this.search))
+        this.cards = [];
+        axios.get(this.urlYgoProDeck.concat("?fname=").concat(this.search))
           .then(({ data: { data } }) => {
             this.cards = data;
           })
@@ -105,4 +131,4 @@ const app = createApp({
   },
 });
 
-app.mount('#app');
+app.mount("#app");
