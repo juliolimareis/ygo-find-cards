@@ -1,52 +1,80 @@
-const app = new Vue({
-  el: '#app',
-  data: {
-    cards:[],
-    search: "",
-    isLoading: false,
-    zoom: '15rem',
-    cardSelected: null,
-    urlYgoProdeck: "https://db.ygoprodeck.com/api/v7/cardinfo.php"
-  },
-  methods:{
-    handleErrorImage() {
-      document.getElementsByClassName(card.id)[0].src = "assets/card-error.png"
-      document.getElementsByClassName(card.id)[0].onerror = ""
-      return true;
-    },
-    onLoadImage(card) {
-      document.getElementsByClassName(card.id)[0].src = card.card_images[0].image_url
-    },
-    openCard(card){
-      this.cardSelected = card;
-    },
-    onZoom(_cardSelected){
-      this.cards = this.cards.map(card => {
-        if(card.id === _cardSelected.id){
-          card.zoom = true;
-        }else{
-          card.zoom = false;
-        }
-        return card;
-      });
-    },
-    onCards(){
-      if(this.search.trim()){
-        this.isLoading = true
-        axios.get(this.urlYgoProdeck.concat("?fname=").concat(this.search))
-        .then((response) => {
-          this.cards = response.data.data
-        })
-        .catch((error) => {
-          this.cards = []
-          console.log(error)
-        })
-        .finally(() => {
-          this.isLoading = false;
-        })
-      }else{
-        this.cards = [];
-      }
+import { createApp, onMounted, ref } from "./vue-3-3-4.js";
+import Loading from "./components/loading.js"
+
+const cards = ref([]);
+const search = ref("");
+const isLoading = ref(false);
+const zoom = '15rem';
+const cardSelected = ref();
+const apiUrl = "https://db.ygoprodeck.com/api/v7/cardinfo.php";
+
+function handleErrorImage() {
+  document.getElementsByClassName(card.id)[0].src = "assets/card-error.png";
+  document.getElementsByClassName(card.id)[0].onerror = "";
+
+  return true;
+}
+
+function onLoadImage(card) {
+  document.getElementsByClassName(card.id)[0].src = card.card_images[0].image_url;
+}
+
+function openCard(card){
+  cardSelected.value = card;
+}
+
+function onZoom(_cardSelected){
+  cards.value = cards.value.map(card => {
+    if(card.id === _cardSelected.id){
+      card.zoom = true;
+    }else{
+      card.zoom = false;
     }
+
+    return card;
+  });
+}
+
+function onCards(){
+  if(search.value.trim()){
+    isLoading.value = true;
+
+    axios.get(apiUrl.concat("?fname=").concat(search.value))
+      .then((response) => {
+        cards.value = response.data.data;
+      })
+      .catch((error) => {
+        cards.value = [];
+        console.log(error);
+      })
+      .finally(() => {
+        isLoading.value = false;
+      })
+  }else{
+    cards.value = [];
   }
-})
+}
+
+const app = createApp({
+  setup() {
+    return {
+      cards,
+      search,
+      isLoading,
+      zoom,
+      cardSelected,
+      apiUrl,
+
+      handleErrorImage,
+      onLoadImage,
+      openCard,
+      onZoom,
+      onCards,
+
+      onMounted,
+
+      Loading
+    }
+  },
+
+}).mount('#app');
