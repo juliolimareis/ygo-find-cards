@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="style/bulma.css" rel="stylesheet"/>
-  <link href="style/main.css" rel="stylesheet"/>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href="style/main.css" rel="stylesheet"/>
 
+    <!-- scripts -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="js/tailwind.js"></script>
+    <script defer src="js/axios.js"></script>
+    <script defer src="js/index.js" type="module"></script>
+
+    <title>Yu-Gi-oH! Find Cards</title>
+  </head>
+  <body class="dark:text-white dark:bg-gray-700"> 
+    <div id="app" class="p-2">
+      <p class="text-4xl p-4 text-center">Yu-Gi-oH! Find Cards</p>
 
       <!-- Actions search -->
       <form v-on:submit.prevent="onCards">   
@@ -21,21 +31,19 @@
         </div>
       </form>
 
-    <!-- cards -->
-    <div v-if="!isLoading && cards.length" class="border-cards mt-4">
-      <img
-        :class="`is-clickable zoom m-2 ${card.id}`"
-        width="150"
-        v-for="card in cards"
-        :key="card.id"
-        :alt="card.name"
-        :title="`${card.name}&#013;${card?.type ? card.type: ''} ${card?.level ? ', Level: ' + card.level : ''}&#013;&#013;${card.desc}`"
-        src="assets/card-back.jpg"
-        @click="openCard(card)"
-        @load="onLoadImage(card)"
-        @error="handleErrorImage"
-      />
-    </div>
+      <!-- cards -->
+      <div v-if="!isLoading && cards.length" class="border-cards mt-4">
+        <img
+          v-for="card in cards" :key="card.id"
+          :class="`cursor-pointer zoom m-2 md:w-[150px] w-[100px] float-left ${card.id}`"
+          :alt="card.name"
+          :title="`${card.name}&#013;${card?.type ? card.type: ''} ${card?.level ? ', Level: ' + card.level : ''}&#013;&#013;${card.desc}`"
+          src="assets/card-back.jpg"
+          @click="openCard(card)"
+          @load="onLoadImage(card)"
+          @error="handleErrorImage"
+        />
+      </div>
 
       <!-- loading -->
       <div>
@@ -55,8 +63,7 @@
           :title="`${cardSelected.name}&#013;${cardSelected?.type ? cardSelected.type: ''} ${cardSelected?.level ? ', Level: ' + cardSelected.level : ''}&#013;&#013;${cardSelected.desc}`"
         />
       </div>
-    </div>
 
-  </div>
-</body>
+    </div>
+  </body>
 </html>
