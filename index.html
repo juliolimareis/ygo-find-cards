@@ -37,47 +37,10 @@
       />
     </div>
 
-    <!-- loading -->
-    <template v-if="isLoading">
-      <div class="loader-container">
-        <div class="card-box">
-          <div class="card-header"></div>
-          <div class="card-body mt-2"></div>
-          <div class="card-desc mt-1"></div>
-        </div>
-        <div class="card-box">
-          <div class="card-header"></div>
-          <div class="card-body mt-2"></div>
-          <div class="card-desc mt-1"></div>
-        </div>
-        <div class="card-box">
-          <div class="card-header"></div>
-          <div class="card-body mt-2"></div>
-          <div class="card-desc mt-1"></div>
-        </div>
-        <div class="card-box">
-          <div class="card-header"></div>
-          <div class="card-body mt-2"></div>
-          <div class="card-desc mt-1"></div>
-        </div>
-        <div class="card-box">
-          <div class="card-header"></div>
-          <div class="card-body mt-2"></div>
-          <div class="card-desc mt-1"></div>
-        </div>
-        <div class="card-box">
-          <div class="card-header"></div>
-          <div class="card-body mt-2"></div>
-          <div class="card-desc mt-1"></div>
-        </div>
-        <div class="card-box">
-          <div class="card-header"></div>
-          <div class="card-body mt-2"></div>
-          <div class="card-desc mt-1"></div>
-        </div>
+      <!-- loading -->
+      <div>
+        <component :is="Loading" v-if="isLoading" />
       </div>
-      <p class="mt-5">Looking for letters ...</p>
-    </template>
 
     <!-- Modal -->
     <div class="modal is-active is-clipped" v-if="cardSelected" @click="openCard(null)">
