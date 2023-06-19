@@ -42,14 +42,17 @@
         <component :is="Loading" v-if="isLoading" />
       </div>
 
-    <!-- Modal -->
-    <div class="modal is-active is-clipped" v-if="cardSelected" @click="openCard(null)">
-      <div class="modal-background"></div>
-      <div class="modal-content">
+      <!-- Main modal -->
+      <div
+        v-if="cardSelected" @click="openCard(null)"
+        style="background-color:rgba(0, 0, 0, 0.5);"
+        class="fixed z-50 overflow-hidden inset-0 md:p-20 h-screen bg-transparent p-1 pt-24">
         <img
-          class="is-clickable zoom m-2"
+          class="zoom md:m-auto md:max-w-md w-full"
           :alt="cardSelected.name"
           :src="cardSelected.card_images[0].image_url"
+          :alt="card.name"
+          :title="`${cardSelected.name}&#013;${cardSelected?.type ? cardSelected.type: ''} ${cardSelected?.level ? ', Level: ' + cardSelected.level : ''}&#013;&#013;${cardSelected.desc}`"
         />
       </div>
     </div>
