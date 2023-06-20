@@ -1,7 +1,10 @@
 # Yu-Gi-oH! Find Cards
 
-![Vue](https://img.shields.io/badge/Vue-v3.3.4-3fb27f)
+<a target="_blank" href="https://yugioh-find-cards.iario.com.br/">![Web Preview](https://img.shields.io/badge/Web-Preview-3fb27f)</a>
+<a target="_blank" href="https://yugioh-find-cards.iario.com.br/">![Vue](https://img.shields.io/badge/Vue-v3.3.4-3fb27f)</a>
+<a target="_blank" href="https://yugioh-find-cards.iario.com.br/">
 ![Tailwind](https://img.shields.io/badge/Tailwind-v3.3.2-38bdf8)
+</a>
 
 <a target="_blank" href="https://yugioh-find-cards.iario.com.br/"> Yu-Gi-oH! Find Cards Web Preview </a>
 
