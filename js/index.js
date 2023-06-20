@@ -57,6 +57,7 @@ function onCards(){
 
 const app = createApp({
   setup() {
+    onMounted(() => console.log("Yu-Gi-oH! Find Cards. By juliolimareis@gmail.com"));
     return {
       cards,
       search,
