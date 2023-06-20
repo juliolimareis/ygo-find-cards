@@ -1,14 +1,14 @@
 # Yu-Gi-oH! Find Cards
 
-<a target="_blank" href="https://yugioh-find-cards.iario.com.br/">![Web Preview](https://img.shields.io/badge/Web-Preview-3fb27f)</a>
-<a target="_blank" href="https://yugioh-find-cards.iario.com.br/">![Vue](https://img.shields.io/badge/Vue-v3.3.4-3fb27f)</a>
-<a target="_blank" href="https://yugioh-find-cards.iario.com.br/">
+<a target="_blank" href="https://ygo-find-cards.iario.com.br/">![Web Preview](https://img.shields.io/badge/Web-Preview-3fb27f)</a>
+<a target="_blank" href="https://vuejs.org/">![Vue](https://img.shields.io/badge/Vue-v3.3.4-3fb27f)</a>
+<a target="_blank" href="https://tailwindcss.com/">
 ![Tailwind](https://img.shields.io/badge/Tailwind-v3.3.2-38bdf8)
 </a>
 
-<a target="_blank" href="https://yugioh-find-cards.iario.com.br/"> Yu-Gi-oH! Find Cards Web Preview </a>
+<a target="_blank" href="https://ygo-find-cards.iario.com.br/"> Yu-Gi-oH! Find Cards Web Preview </a>
 
-<img src="https://yugioh-find-cards.iario.com.br/assets/logo.jpg" />
+<img src="https://ygo-find-cards.iario.com.br/assets/logo.jpg" />
 
 <br />
 
@@ -28,7 +28,7 @@ The project has the following main features:
 
 3. Responsive Design: The design's interface is responsive and adapts to different screen sizes, ensuring a consistent user experience across mobile devices, tablets, and desktops.
 
-<img src="https://yugioh-find-cards.iario.com.br/assets/demo.jpg" />
+<img src="https://ygo-find-cards.iario.com.br/assets/demo.jpg" />
 
 ## Technologies Used
 
