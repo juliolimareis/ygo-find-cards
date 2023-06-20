@@ -3,6 +3,8 @@
 ![Vue](https://img.shields.io/badge/Vue-v3.3.4-3fb27f)
 ![Tailwind](https://img.shields.io/badge/Tailwind-v3.3.2-38bdf8)
 
+<a target="_blank" href="https://yugioh-find-cards.iario.com.br/"> Yu-Gi-oH! Find Cards Web Preview </a>
+
 <img src="https://yugioh-find-cards.iario.com.br/assets/logo.jpg" />
 
 <br />
