@@ -20,7 +20,7 @@
     <meta name="google" content="notranslate" />
     
     <link rel="icon" href="assets/card-back.jpg" />
-    <link rel="apple-touch-icon" href="https://ygo-find-cards.iario.com.br/" />    
+    <link rel="apple-touch-icon" href="https://ygo-find-cards.iario.com.br/assets/logo.jpg" />    
     
     <link href="style/main.css" rel="stylesheet"/>
 
@@ -63,7 +63,7 @@
       <div v-if="!isLoading && cards.length" class="border-cards mt-4">
         <img
           v-for="card in cards" :key="card.id"
-          :class="`cursor-pointer zoom m-2 md:w-[150px] w-[100px] float-left ${card.id}`"
+          :class="`cursor-pointer zoom m-2 md:w-[150px] mb-360:w-[97px] mb-412:w-[115px] mb-384:w-[105px] mb-375:w-[103px] mb-800:w-[113px] w-[100px] float-left ${card.id}`"
           :alt="card.name"
           :title="`${card.name}&#013;${card?.type ? card.type: ''} ${card?.level ? ', Level: ' + card.level : ''}&#013;&#013;${card.desc}`"
           src="assets/card-back.jpg"
@@ -82,9 +82,9 @@
       <div
         v-if="cardSelected" @click="openCard(null)"
         style="background-color:rgba(0, 0, 0, 0.5);"
-        class="fixed z-50 overflow-hidden inset-0 md:p-20 h-screen bg-transparent p-1 pt-24">
+        class="fixed z-50 overflow-hidden inset-0 md:p-20 h-screen bg-transparent p-1 pt-14">
         <img
-          class="zoom md:m-auto md:max-w-md w-full"
+          class="zoom m-auto md:max-w-md"
           :alt="cardSelected.name"
           :src="cardSelected.card_images[0].image_url"
           :alt="card.name"
